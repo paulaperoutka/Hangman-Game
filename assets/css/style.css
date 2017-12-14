@@ -1,0 +1,40 @@
+/*font references
+font-family: 'Quattrocento', serif;
+font-family: 'Meddon', cursive;*/
+
+body {
+	background-image: url(../images/background-image-4.jpeg);
+	background-size: cover;
+}
+
+.wrapper-1 {
+	width: 100%;
+	height: auto;
+}
+
+header {
+	text-align: center;
+	font-family: 'Meddon', cursive;
+	font-size: 32px;
+	background-color: #e2ffd1;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	
+}
+
+h3 {
+	font-family: 'Meddon', cursive;
+	text-align: center;
+}
+
+#start {
+	font-family: 'Meddon', cursive;
+	text-align: center;
+	font-size: 25px;
+	padding-top: 30px;
+
+}
+
+.hidden {
+	text-align: center;
+}
