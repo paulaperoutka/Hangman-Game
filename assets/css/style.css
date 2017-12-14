@@ -7,7 +7,7 @@ body {
 	background-size: cover;
 }
 
-.wrapper-1 {
+.wrapper {
 	width: 100%;
 	height: auto;
 }
@@ -37,4 +37,16 @@ h3 {
 
 .hidden {
 	text-align: center;
+}
+
+#gamesWon {
+	font-family: 'Meddon', cursive;
+	text-align: center;
+	font-size: 25px;
+}
+
+#remainingGuesses {
+	font-family: 'Meddon', cursive;
+	text-align: center;
+	font-size: 25px;
 }
