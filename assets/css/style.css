@@ -15,10 +15,10 @@ body {
 header {
 	text-align: center;
 	font-family: 'Meddon', cursive;
-	font-size: 32px;
+	font-size: 30px;
 	background-color: #e2ffd1;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 28px;
+	padding-bottom: 28px;
 	
 }
 
@@ -65,9 +65,11 @@ h3 {
 	font-size: 20px;
 }
 
-
-#start{
-	padding-top: 140px;
+#start-game {
+	font-family: 'Meddon', cursive;
+	text-align: center;
+	font-size: 25px;
+	padding: 30px;
 }
 
 #lettersArray {

@@ -30,60 +30,65 @@ var wins = 0;
 var guessesRemaining = 8;
 //Open variable to store letters not in gameword
 var incorrectGuesses = [];
-//Open array for word of game
+//Open array for gameWord letters
 var lettersArray = [];
+
+var correctGuess = [];
+
 
 
 //Select a random word for the game from the wordList array
-	var gameWord = wordList[Math.floor(Math.random() * wordList.length)];
-	//Get array of letters from game word
-	var lettersArray = Array.from(gameWord);
-	//console.log(getLetters)
+var gameWord = wordList[Math.floor(Math.random() * wordList.length)];
+	console.log(gameWord);
+//Get array of letters from game word
+var lettersArray = Array.from(gameWord);
+//console.log(getLetters)
 
 	for (var i = 0; i < gameWord.length; i++) {
     lettersArray[i] = "_ ";
-}
+    console.log(lettersArray[i]);
+	}
 
 
+//Show starting values
+document.getElementById('start-game').innerHTML = ("Press any letter to begin!");
 
-	
-function gameReset () {
-
-	//Show starting values
-	document.getElementById('lettersArray').innerHTML = lettersArray;
+document.getElementById('lettersArray').innerHTML = lettersArray;
 
 	var hideComma = lettersArray.join("");
 		document.getElementById("lettersArray").innerHTML = hideComma;
 
-	document.getElementById('gamesWon').innerHTML = wins; 
+document.getElementById('gamesWon').innerHTML = wins; 
 
-	document.getElementById('remainingGuesses').innerHTML = guessesRemaining;
+document.getElementById('remainingGuesses').innerHTML = guessesRemaining;
 
-	document.getElementById('guessedLetters').innerHTML = incorrectGuesses;
+document.getElementById('guessedLetters').innerHTML = incorrectGuesses;
 
 
+function refreshPage {
+	
+};
+
+
+document.onkeyup = function () {
+
+	var playerGuess = String.fromCharCode(event.keyCode).toUpperCase();
+	var correctGuess = false;
+
+	if (event.keyCode > 64 && event.keyCode < 91) {
+    	document.getElementById('start-game').innerHTML = ("");
+    	console.log(event.key);
+
+    	for (var j=0; j < gameWord.length; j++) {
+    		if (gameWord[j] === playerGuess) {
+    			lettersArray[j] = playerGuess;
+    			guessesRemaining --;
+    			correctGuess = true;
+    		}
+    	}
+
+	}
 }
-
-gameReset ();
-
-
-
-
-
-document.onkeypress = function (event) {
-
-	function playGame () {
-
-
-	for (var i = 0; i < gameWord.length; i++) {
-        lettersArray[i] = "_ ";
-        console.log(lettersArray[i]);
-	}	
-
-
-	}
-
-	}
 
 
 
