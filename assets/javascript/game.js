@@ -1,16 +1,3 @@
-//generate a word at random and store it in a variable
-//# display the length of the word to the user
-//# correct_guesses is less than the length of the word
-//# prompt the user to guess a letter
-//# if the guess is correct increment correct_guesses by 1
-//# if the guess is incorrect increment incorrect_guesses by 1 
-//# and draw the next part of the hangman
-//# if the incorrect_guesses is greater than 8, tell the user 
-//# they lost and exit the program
-//# if correct_guesses is equal to the length of the word, tell the user they won
-
-
-
 window.onload = function () {
 
 //Set game values and variables
@@ -26,17 +13,21 @@ var lettersArray = [];
 
 var incorrectGuesses = [];
 
+function gameSet () {
 
-	//Show starting values
-	document.getElementById('startGame').innerHTML = ("Press any letter to begin!");
+//Show starting values
+    document.getElementById('startGame').innerHTML = ("Press any letter to begin!");
 
-	document.getElementById('lettersArray').innerHTML = lettersArray;
+    document.getElementById('lettersArray').innerHTML = lettersArray;
 
-	document.getElementById('gamesWon').innerHTML = wins; 
+    document.getElementById('gamesWon').innerHTML = wins; 
 
-	document.getElementById('remainingGuesses').innerHTML = guessesRemaining;
+    document.getElementById('remainingGuesses').innerHTML = guessesRemaining;
 
-	document.getElementById('guessedLetters').innerHTML = incorrectGuesses;
+    document.getElementById('guessedLetters').innerHTML = incorrectGuesses;
+}
+	
+gameSet ();
 
 
 
@@ -86,7 +77,7 @@ document.onkeyup = function gameLoop () {
     	}
     }
 
-gameLoop ();
+
 //Removed code: Discount duplicate letters
  	//document.getElementById('duplicateMessage').innerHTML = ("You already guessed that letter!")
  	//guessesRemaining !-
@@ -103,7 +94,9 @@ gameLoop ();
 
  //Removed code: reset game
 	//putting the reset for set variables and display inside a function gameSet (and then even running gameSet ();) made it not run
-			
+	
+gameLoop ();
+
 }
 
 
