@@ -59,7 +59,7 @@ var remainingLetters = gameWord.length;
 
 
 //Cannot get actual game to run :()
-document.onkeyup = function () {
+document.onkeyup = function gameLoop () {
 
 	var playerGuess = String.fromCharCode(event.keyCode).toUpperCase();
 	var correctGuess = [];
@@ -85,21 +85,23 @@ document.onkeyup = function () {
     		}
     	}
     }
-//Uncoded: Discount duplicate letters
+
+gameLoop ();
+//Removed code: Discount duplicate letters
  	//document.getElementById('duplicateMessage').innerHTML = ("You already guessed that letter!")
  	//guessesRemaining !-
 
-//Uncoded: if incorrect guess, push to guessedLetters, guessesRemaining--
+//Removed code: if incorrect guess, push to guessedLetters, guessesRemaining--
 
-//Uncoded: Lost
+//Removed code: Lost
  	//if (incorrectGuesses > 8) {
         //document.getElementById('loseMessage').innerHTML =("You lose. Guess a new letter start the game over again!");}
 
-//Uncoded: Win
+//Removed code: Win
  	//if (remainingGuesses === 0) {
  		//document.getElementById('winMessage').innerHTML = ("You win! Guess a new letter to start the game over again!")}
 
- //Uncoded: reset game
+ //Removed code: reset game
 	//putting the reset for set variables and display inside a function gameSet (and then even running gameSet ();) made it not run
 			
 }
