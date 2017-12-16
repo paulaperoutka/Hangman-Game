@@ -11,7 +11,7 @@
 
 
 
-window.onload = function () { }
+window.onload = function () {
 
 //Set game values and variables
 
@@ -78,7 +78,7 @@ document.onkeyup = function () {
 //Capture playerGuess letetr and replace underscore with playerGuess if correct guess
     if (gameWord.includes(playerGuess)) {
     	for (var j=0; j<gameWord.length; j++) {
-    		if (gameWord[j] === playerguess) {
+    		if (gameWord[j] === playerGuess) {
     			lettersArray = playerGuess;
     			remainingLetters--;
     			correctGuess = true;
@@ -106,6 +106,7 @@ document.onkeyup = function () {
 
 
 
-//Close window.onload function here or above? Doesn't work when closed here!
- 
+
+//Close window.onload function
+ }
  
