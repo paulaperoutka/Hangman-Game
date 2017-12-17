@@ -3,11 +3,11 @@ font-family: 'Quattrocento', serif;
 font-family: 'Meddon', cursive;*/
 
 body {
-	background-image: url(../images/background-image-4.jpeg);
+	background-image: url(../images/background-image-5.jpeg);
 /*	background-image: url(../images/header-image.jpeg);*/
 	background-size: cover;
 	margin-top: -35px;
-	height: 900px;
+	height: 1000px;
 	color: #104C31;
 }
 
