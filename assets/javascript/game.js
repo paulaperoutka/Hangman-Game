@@ -8,14 +8,12 @@ var wordList = ["piano", "cello", "music", "notes", "song", "score", "tempo", "r
 var wins = 0;
 //Set total guesses
 var guessesRemaining = 8;
-
+//Open array to hold gameWord letters & correct playerGuess
 var lettersArray = [];
-
+//Open array to hold incorrect playerGuess
 var incorrectGuesses = [];
 
-function gameSet () {
-
-//Show starting values
+    //Show starting values
     document.getElementById('startGame').innerHTML = ("Press any letter to begin!");
 
     document.getElementById('lettersArray').innerHTML = lettersArray;
@@ -25,81 +23,116 @@ function gameSet () {
     document.getElementById('remainingGuesses').innerHTML = guessesRemaining;
 
     document.getElementById('guessedLetters').innerHTML = incorrectGuesses;
-}
-	
-gameSet ();
-
 
 
 //Select a random word for the game from the wordList array
 var gameWord = wordList[Math.floor(Math.random() * wordList.length)];
-	console.log(gameWord);
+    console.log(gameWord);
 //Get array of letters from game word
 var lettersArray = Array.from(gameWord);
 //console.log(getLetters)
-
-	for (var i = 0; i < gameWord.length; i++) {
+    for (var i = 0; i < gameWord.length; i++) {
     lettersArray[i] = "_ ";
     var hideComma = lettersArray.join("");
-			document.getElementById("lettersArray").innerHTML = hideComma;
+            document.getElementById("lettersArray").innerHTML = hideComma;
     console.log(lettersArray[i]);
-	}
-
-
+    }
+//Variable for remaining correct playerGuess; subtract remaining to calculate win
 var remainingLetters = gameWord.length;
+    console.log(remainingLetters);
+
+//Start play
+document.onkeyup = function playGame () {
+//
+	var playerGuess = event.key;
+//open array to hold booleans for correctGuess; not necessary?
+	// var correctGuess = [];
+
+    	if (event.keyCode > 64 && event.keyCode < 91) {
+
+        	document.getElementById('startGame').innerHTML = ("");
+        	document.getElementById('notLetterMessage').innerHTML = ("");
+        	console.log(event.key);
+        }
+
+        else {
+        	document.getElementById('notLetterMessage').innerHTML = ("That's not a letter!");
+        }
+
+    //Capture playerGuess letter and replace underscore with playerGuess if correct guess
+        if (gameWord.includes(playerGuess)) {
+        	for (var j=0; j<gameWord.length; j++) {
+        		if (gameWord[j] === playerGuess) {
+        			lettersArray[j] = playerGuess;
+                    remainingLetters--;
+        			// correctGuess = true;
+                    console.log
+        		}
+        	}
+
+            document.getElementById("lettersArray").innerHTML = lettersArray.join(" ");
+            console.log(remainingLetters);
+
+        }
+
+        else { 
+
+            for (var j=0; j<gameWord.length; j++) {
+                if (gameWord.indexOf(playerGuess) === -1) {
+                    // correctGuess = false;
+                    // console.log(incorrectGuesses);
+                }
+
+            }
+
+            if (event.keyCode > 64 && event.keyCode < 91 && incorrectGuesses.indexOf(playerGuess) != false) {
+                incorrectGuesses.push(playerGuess);
+                    document.getElementById("guessedLetters").innerHTML = incorrectGuesses.join(", ");  
+                    console.log(incorrectGuesses);      
+                guessesRemaining--;
+                    document.getElementById('remainingGuesses').innerHTML = guessesRemaining;
+
+            }
+                
+        }
+        
+
+        if (remainingLetters <= 0 && lettersArray.indexOf("_ ") != true){
+            wins++;
+            console.log(wins);
+            document.getElementById('gamesWon').innerHTML = wins;
+            document.getElementById('winMessage').innerHTML = ("You win!!!!!  Press any letter to play again.");
+        }
+
+        else {
+            document.getElementById('notLetterMessage').innerHTML = ("That's not a letter!");
+        }
 
 
-//Cannot get actual game to run :()
-document.onkeyup = function gameLoop () {
-
-	var playerGuess = String.fromCharCode(event.keyCode).toUpperCase();
-	var correctGuess = [];
-
-	if (event.keyCode > 64 && event.keyCode < 91) {
-
-    	document.getElementById('startGame').innerHTML = ("");
-    	document.getElementById('notLetterMessage').innerHTML = ("");
-    	console.log(event.key);
-    }
-
-    else {
-    	document.getElementById('notLetterMessage').innerHTML = ("That's not a letter!");
-    }
-
-//Capture playerGuess letetr and replace underscore with playerGuess if correct guess
-    if (gameWord.includes(playerGuess)) {
-    	for (var j=0; j<gameWord.length; j++) {
-    		if (gameWord[j] === playerGuess) {
-    			lettersArray = playerGuess;
-    			remainingLetters--;
-    			correctGuess = true;
-    		}
-    	}
-    }
+        // if (incorrectGuesses.indexOf(playerGuess) == true) {
+        //         document.getElementById('duplicateMessage').innerHTML = ("You already chose that letter!");
+        //     }
 
 
-//Removed code: Discount duplicate letters
- 	//document.getElementById('duplicateMessage').innerHTML = ("You already guessed that letter!")
- 	//guessesRemaining !-
+        if (guessesRemaining === 0) {
+            document.getElementById('loseMessage').innerHTML = ("You lose.  Press any letter to play again.");
+            document.onkeyup = function () {
+                if (event.keyCode > 64 && event.keyCode < 91) {
+                    window.location.reload ();
+                }
 
-//Removed code: if incorrect guess, push to guessedLetters, guessesRemaining--
+                else {
+                    document.getElementById('notLetterMessage').innerHTML = ("That's not a letter!");
+                }
+                
+            }
 
-//Removed code: Lost
- 	//if (incorrectGuesses > 8) {
-        //document.getElementById('loseMessage').innerHTML =("You lose. Guess a new letter start the game over again!");}
+        }
 
-//Removed code: Win
- 	//if (remainingGuesses === 0) {
- 		//document.getElementById('winMessage').innerHTML = ("You win! Guess a new letter to start the game over again!")}
 
- //Removed code: reset game
-	//putting the reset for set variables and display inside a function gameSet (and then even running gameSet ();) made it not run
-	
-gameLoop ();
 
+//close onkeyupfunction
 }
-
-
 
 
 //Close window.onload function
