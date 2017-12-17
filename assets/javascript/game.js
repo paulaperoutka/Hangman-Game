@@ -68,7 +68,6 @@ document.onkeyup = function playGame () {
         			lettersArray[j] = playerGuess;
         		} 
         	}
-
             remainingLetters--;
             correctGuess = true;
             console.log(playerGuess);
@@ -93,14 +92,14 @@ document.onkeyup = function playGame () {
                         document.getElementById('remainingGuesses').innerHTML = guessesRemaining;
             }
 
-            if (incorrectGuesses.indexOf(playerGuess) === true) {
-                document.getElementById('duplicateMessage').innerHTML = ("You already chose that letter!");
-            }
-            document.getElementById('remainingGuesses').innerHTML = guessesRemaining;
+            // if (incorrectGuesses.indexOf(playerGuess) === true) {
+            //     document.getElementById('duplicateMessage').innerHTML = ("You already chose that letter!");
+            // }
+            // document.getElementById('remainingGuesses').innerHTML = guessesRemaining;
         }
         
 //WIN!
-        if (remainingLetters <= 0 && lettersArray.indexOf("_ ") != true) {
+        if (remainingLetters <= 0 && lettersArray.includes("_ ") != true) {
             wins++;
             console.log(wins);
             document.getElementById('gamesWon').innerHTML = wins;
@@ -117,9 +116,6 @@ document.onkeyup = function playGame () {
                 }
 
         }
-        // if (incorrectGuesses.indexOf(playerGuess) == true) {
-        //         document.getElementById('duplicateMessage').innerHTML = ("You already chose that letter!");
-        //     }
 
 //LOSE!
         if (guessesRemaining === 0) {
