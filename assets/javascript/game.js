@@ -76,6 +76,7 @@ document.onkeyup = function playGame () {
             console.log(remainingLetters);
         }
 
+//Push incorrect guesses
         else { 
 
             for (var j=0; j<gameWord.length; j++) {
@@ -89,11 +90,16 @@ document.onkeyup = function playGame () {
                         document.getElementById("guessedLetters").innerHTML = incorrectGuesses.join(", ");  
                         console.log(incorrectGuesses);      
                     guessesRemaining--;
+                        document.getElementById('remainingGuesses').innerHTML = guessesRemaining;
+            }
+
+            if (incorrectGuesses.indexOf(playerGuess) === true) {
+                document.getElementById('duplicateMessage').innerHTML = ("You already chose that letter!");
             }
             document.getElementById('remainingGuesses').innerHTML = guessesRemaining;
         }
         
-
+//WIN!
         if (remainingLetters <= 0 && lettersArray.indexOf("_ ") != true) {
             wins++;
             console.log(wins);
@@ -101,6 +107,7 @@ document.onkeyup = function playGame () {
             document.getElementById('winMessage').innerHTML = ("You win!!!!!  Press any letter to play again.");
                 document.onkeyup = function() {
                     if (event.keyCode > 64 && event.keyCode < 91) {
+//Do not want to reload entire window, but calling functions and resetting values icouldn't quite get working
                         window.location.reload ();
                     }
                     
@@ -114,11 +121,12 @@ document.onkeyup = function playGame () {
         //         document.getElementById('duplicateMessage').innerHTML = ("You already chose that letter!");
         //     }
 
-
+//LOSE!
         if (guessesRemaining === 0) {
             document.getElementById('loseMessage').innerHTML = ("You lose.  Press any letter to play again.");
             document.onkeyup = function () {
                 if (event.keyCode > 64 && event.keyCode < 91) {
+//Same thing here with not reloading entire window
                     window.location.reload ();
                 }
 
