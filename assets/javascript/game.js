@@ -32,28 +32,29 @@ var gameWord = wordList[Math.floor(Math.random() * wordList.length)];
 var lettersArray = Array.from(gameWord);
 //console.log(getLetters)
     for (var i = 0; i < gameWord.length; i++) {
-    lettersArray[i] = "_ ";
-    var hideComma = lettersArray.join("");
+        lettersArray[i] = "_ ";
+        var hideComma = lettersArray.join("");
             document.getElementById("lettersArray").innerHTML = hideComma;
-    console.log(lettersArray[i]);
+        console.log(lettersArray[i]);
     }
+
 //Variable for remaining correct playerGuess; subtract remaining to calculate win
 var remainingLetters = gameWord.length;
     console.log(remainingLetters);
 
 //Start play
 document.onkeyup = function playGame () {
-//
+
 	var playerGuess = event.key;
 //open array to hold booleans for correctGuess; not necessary?
-	// var correctGuess = [];
+	var correctGuess = [];
 
     	if (event.keyCode > 64 && event.keyCode < 91) {
-
-        	document.getElementById('startGame').innerHTML = ("");
-        	document.getElementById('notLetterMessage').innerHTML = ("");
-        	console.log(event.key);
+            document.getElementById('startGame').innerHTML = ("");
+            document.getElementById('notLetterMessage').innerHTML = ("");
+            console.log(event.key);
         }
+            
 
         else {
         	document.getElementById('notLetterMessage').innerHTML = ("That's not a letter!");
@@ -61,54 +62,54 @@ document.onkeyup = function playGame () {
 
     //Capture playerGuess letter and replace underscore with playerGuess if correct guess
         if (gameWord.includes(playerGuess)) {
-        	for (var j=0; j<gameWord.length; j++) {
+        	
+            for (var j=0; j<gameWord.length; j++) {
         		if (gameWord[j] === playerGuess) {
         			lettersArray[j] = playerGuess;
-                    remainingLetters--;
-        			// correctGuess = true;
-                    console.log
-        		}
+        		} 
         	}
 
+            remainingLetters--;
+            correctGuess = true;
+            console.log(playerGuess);
             document.getElementById("lettersArray").innerHTML = lettersArray.join(" ");
             console.log(remainingLetters);
-
         }
 
         else { 
 
             for (var j=0; j<gameWord.length; j++) {
                 if (gameWord.indexOf(playerGuess) === -1) {
-                    // correctGuess = false;
-                    // console.log(incorrectGuesses);
-                }
-
-            }
-
-            if (event.keyCode > 64 && event.keyCode < 91 && incorrectGuesses.indexOf(playerGuess) != false) {
-                incorrectGuesses.push(playerGuess);
-                    document.getElementById("guessedLetters").innerHTML = incorrectGuesses.join(", ");  
-                    console.log(incorrectGuesses);      
-                guessesRemaining--;
-                    document.getElementById('remainingGuesses').innerHTML = guessesRemaining;
-
+                    correctGuess = false;
+                }    
             }
                 
+            if (event.keyCode > 64 && event.keyCode < 91 && incorrectGuesses.indexOf(playerGuess) != false) {
+                    incorrectGuesses.push(playerGuess);
+                        document.getElementById("guessedLetters").innerHTML = incorrectGuesses.join(", ");  
+                        console.log(incorrectGuesses);      
+                    guessesRemaining--;
+            }
+            document.getElementById('remainingGuesses').innerHTML = guessesRemaining;
         }
         
 
-        if (remainingLetters <= 0 && lettersArray.indexOf("_ ") != true){
+        if (remainingLetters <= 0 && lettersArray.indexOf("_ ") != true) {
             wins++;
             console.log(wins);
             document.getElementById('gamesWon').innerHTML = wins;
             document.getElementById('winMessage').innerHTML = ("You win!!!!!  Press any letter to play again.");
+                document.onkeyup = function() {
+                    if (event.keyCode > 64 && event.keyCode < 91) {
+                        window.location.reload ();
+                    }
+                    
+                    else {
+                        document.getElementById('notLetterMessage').innerHTML = ("That's not a letter!");
+                    }
+                }
+
         }
-
-        else {
-            document.getElementById('notLetterMessage').innerHTML = ("That's not a letter!");
-        }
-
-
         // if (incorrectGuesses.indexOf(playerGuess) == true) {
         //         document.getElementById('duplicateMessage').innerHTML = ("You already chose that letter!");
         //     }
@@ -128,7 +129,6 @@ document.onkeyup = function playGame () {
             }
 
         }
-
 
 
 //close onkeyupfunction
