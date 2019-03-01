@@ -123,7 +123,8 @@ document.onkeyup = function playGame () {
 
 //LOSE!
         if (guessesRemaining === 0) {
-            document.getElementById('loseMessage').innerHTML = ("You lose.  Press any letter to play again.");
+            gameWord = gameWord.toUpperCase();
+            document.getElementById('loseMessage').innerHTML = (`You lose.  Press any letter to play again. The correct word was ${gameWord}!`);
             document.onkeyup = function () {
                 if (event.keyCode > 64 && event.keyCode < 91) {
 //Same thing here with not reloading entire window
