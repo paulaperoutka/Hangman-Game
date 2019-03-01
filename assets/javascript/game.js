@@ -62,6 +62,8 @@ document.onkeyup = function playGame () {
 
     //Capture playerGuess letter and replace underscore with playerGuess if correct guess
         if (gameWord.includes(playerGuess)) {
+
+            new Audio('./assets/audio/yep.mp3').play();
         	
             for (var j=0; j<gameWord.length; j++) {
         		if (gameWord[j] === playerGuess) {
@@ -77,6 +79,8 @@ document.onkeyup = function playGame () {
 
 //Push incorrect guesses
         else { 
+
+            new Audio('./assets/audio/nope.mp3').play();
 
             for (var j=0; j<gameWord.length; j++) {
                 if (gameWord.indexOf(playerGuess) === -1) {
